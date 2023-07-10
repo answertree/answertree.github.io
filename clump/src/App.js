@@ -122,7 +122,7 @@ function Clump({ mat = new THREE.Matrix4(), vec = new THREE.Vector3(), ...props 
   )
 }
 function Clump2({ mat = new THREE.Matrix4(), vec = new THREE.Vector3(), ...props }) {
-  const texture2 = useTexture("./at2.png")
+  const texture2 = useTexture("./at3.png")
   const [ref, api] = useSphere(() => sphereConfig())
   useFrame(updateSphereForce(ref, mat, api, vec))
   return (
