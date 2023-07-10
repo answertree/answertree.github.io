@@ -73,7 +73,7 @@ export const App = () => {
   )
 }
 
-const startDist = 35
+const startDist = 28
 
 function updateSphereForce(ref, mat, api, vec) {
   return (state) => {
