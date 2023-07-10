@@ -53,7 +53,7 @@ export const App = () => {
 
   return (
     <div ref={container} style={{ height: "100%" }}>
-      <Canvas shadows gl={{ antialias: false }} dpr={[1, 1.5]} camera={{ position: [0, 0, 26], fov: 45, near: 0.1, far: 100 }}>
+      <Canvas shadows gl={{ antialias: false }} dpr={[1, 1.5]} camera={{ position: [0, 0, 22], fov: 45, near: 0.1, far: 100 }}>
         <ambientLight intensity={0.5} />
         <spotLight intensity={1} angle={0.2} penumbra={1} position={[30, 30, 30]} castShadow shadow-mapSize={[512, 512]} />
         <Physics gravity={[0, 1, 0]} iterations={11}>
@@ -73,7 +73,7 @@ export const App = () => {
   )
 }
 
-const startDist = 25
+const startDist = 20
 
 function updateSphereForce(ref, mat, api, vec) {
   return (state) => {
@@ -121,6 +121,7 @@ function Clump({ mat = new THREE.Matrix4(), vec = new THREE.Vector3(), ...props 
     />
   )
 }
+
 function Clump2({ mat = new THREE.Matrix4(), vec = new THREE.Vector3(), ...props }) {
   const texture2 = useTexture("./at3.png")
   const [ref, api] = useSphere(() => sphereConfig())
