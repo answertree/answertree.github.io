@@ -56,7 +56,7 @@ export const App = () => {
       <Canvas shadows gl={{ antialias: false }} dpr={[1, 1.5]} camera={{ position: [0, 0, 22], fov: 45, near: 0.1, far: 100 }}>
         <ambientLight intensity={0.5} />
         <spotLight intensity={1} angle={0.2} penumbra={1} position={[30, 30, 30]} castShadow shadow-mapSize={[512, 512]} />
-        <Physics gravity={[0, 1, 0]} iterations={11}>
+        <Physics gravity={[0, 1, 0]} iterations={10}>
           <Pointer />
           <Clump />
           <Clump2 />
@@ -67,13 +67,13 @@ export const App = () => {
           <N8AO halfRes color="black" aoRadius={2} intensity={1} aoSamples={5} denoiseSamples={4} />
           <SMAA />
         </EffectComposer>
-        <OrbitControls autoRotate={true} autoRotateSpeed={0.5} minDistance={15} maxDistance={50} enablePan={false} enableZoom={true} enableRotate={false} />
+        <OrbitControls autoRotate={true} autoRotateSpeed={0.6} minDistance={15} maxDistance={50} enablePan={false} enableZoom={true} enableRotate={false} />
       </Canvas>
     </div>
   )
 }
 
-const startDist = 20
+const startDist = 35
 
 function updateSphereForce(ref, mat, api, vec) {
   return (state) => {
@@ -83,7 +83,7 @@ function updateSphereForce(ref, mat, api, vec) {
         vec
           .setFromMatrixPosition(mat)
           .normalize()
-          .multiplyScalar(-30 + i * -2) //-40 + i * -0.5)
+          .multiplyScalar(-40 + i * -1) //-40 + i * -0.5)
           .toArray(),
         [0, 0, 0],
       )
@@ -97,8 +97,8 @@ function sphereConfig() {
   return {
     args: [1],
     mass: 1,
-    angularDamping: 0.5,
-    linearDamping: 0.6,
+    angularDamping: 0.6,
+    linearDamping: 0.8,
     position: [rfs(startDist), rfs(startDist), rfs(startDist)],
 
     rotation: [0, -Math.PI / 2, 0],
