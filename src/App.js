@@ -10,7 +10,7 @@ import { LayerMaterial, Depth } from 'lamina'
 
 export default function App() {
   return (
-    <Canvas shadows camera={{ position: [-4, 0, -4], fov: 95 }}>
+    <Canvas shadows camera={{ position: [-5, 0, -5], fov: 95 }}>
       <group position={[0, -1.3, 0]}>
         <group rotation={[0, Math.PI / 3, 0]}>
           <AnswertreeLogo />
