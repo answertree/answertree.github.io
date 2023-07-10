@@ -6,7 +6,8 @@ import { Physics, useSphere } from "@react-three/cannon"
 import { EffectComposer, N8AO, SMAA } from "@react-three/postprocessing"
 
 const rfs = THREE.MathUtils.randFloatSpread
-const sphereGeometry = new THREE.SphereGeometry(1, 50, 32)
+const sphereGeometry = new THREE.SphereGeometry(1, 32, 32)
+const sphereGeometry2 = new THREE.SphereGeometry(1, 32, 32)
 const baubleMaterial = new THREE.MeshStandardMaterial({
   color: "white",
   roughness: 0,
@@ -73,22 +74,6 @@ export const App = () => {
 }
 
 const startDist = 25
-function Clump({ mat = new THREE.Matrix4(), vec = new THREE.Vector3(), ...props }) {
-  const texture = useTexture("./at.png")
-  const [ref, api] = useSphere(() => sphereConfig())
-  useFrame(updateSphereForce(ref, mat, api, vec))
-  return (
-    <instancedMesh
-      ref={ref}
-      castShadow
-      receiveShadow
-      args={[null, null, numBalls]}
-      geometry={sphereGeometry}
-      material={baubleMaterial}
-      material-map={texture}
-    />
-  )
-}
 
 function updateSphereForce(ref, mat, api, vec) {
   return (state) => {
@@ -120,7 +105,22 @@ function sphereConfig() {
     fixedRotation: document.location.search.includes("fixedRotation"),
   }
 }
-
+function Clump({ mat = new THREE.Matrix4(), vec = new THREE.Vector3(), ...props }) {
+  const texture = useTexture("./at.png")
+  const [ref, api] = useSphere(() => sphereConfig())
+  useFrame(updateSphereForce(ref, mat, api, vec))
+  return (
+    <instancedMesh
+      ref={ref}
+      castShadow
+      receiveShadow
+      args={[null, null, numBalls]}
+      geometry={sphereGeometry}
+      material={baubleMaterial}
+      material-map={texture}
+    />
+  )
+}
 function Clump2({ mat = new THREE.Matrix4(), vec = new THREE.Vector3(), ...props }) {
   const texture2 = useTexture("./at2.png")
   const [ref, api] = useSphere(() => sphereConfig())
@@ -131,7 +131,7 @@ function Clump2({ mat = new THREE.Matrix4(), vec = new THREE.Vector3(), ...props
       castShadow
       receiveShadow
       args={[null, null, numBalls]}
-      geometry={sphereGeometry}
+      geometry={sphereGeometry2}
       material={baubleMaterial2}
       material-map={texture2}
     />
