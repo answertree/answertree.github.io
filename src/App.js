@@ -35,7 +35,7 @@ export default function App() {
 }
 
 function AnswertreeLogo() {
-  const { nodes } = useGLTF('/answertree-logo-bevel.gltf')
+  const { nodes } = useGLTF('./answertree-logo-bevel.gltf')
 
   const { roughness, metalness, depth } = useControls({
     roughness: { value: 0.5, min: 0, max: 1 },
@@ -68,4 +68,4 @@ function Env() {
   })
   return <Environment preset={preset} background blur={blur} rotation={[10, 1.5, 2]} />
 }
-useGLTF.preload('/answertree-logo-bevel.gltf')
+useGLTF.preload('./answertree-logo-bevel.gltf')
