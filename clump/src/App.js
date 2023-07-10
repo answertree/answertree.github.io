@@ -17,7 +17,7 @@ export const App = () => (
       <Pointer />
       <Clump />
     </Physics>
-    <Environment files="/adamsbridge.hdr" />
+    <Environment files="./adamsbridge.hdr" />
     <EffectComposer disableNormalPass multisampling={0}>
       <N8AO halfRes color="black" aoRadius={2} intensity={1} aoSamples={6} denoiseSamples={4} />
       <SMAA />
