@@ -16,9 +16,9 @@ createRoot(document.getElementById('root')).render(
         left: '50%',
         marginLeft: -140,
         width: 280,
-        filter: 'drop-shadow(0 0 1px rgba(0,0,0,0.3)) drop-shadow(0 0 25px rgba(255,235,255,0.3))'
+        filter: 'drop-shadow(0 0 1px rgba(0,0,0,0.5)) drop-shadow(0 0 3px rgba(255,255,255,0.2))'
       }}
-      onclick={() => {
+      onClick={() => {
         window.open('https://answertree.ai', '_blank')
       }}>
       <svg height="100%" viewBox="0 0 415 67" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,7 +57,7 @@ createRoot(document.getElementById('root')).render(
           fill="#0F172A"></path>
       </svg>
       <br />
-      <div style={{ marginTop: 12, textAlign: 'center', fontSize: '18px', fontWeight: '600', color: '#222', textShadow: '4px 5px 2px 12px #ffffff;' }}>
+      <div style={{ marginTop: 12, textAlign: 'center', fontSize: '18px', fontWeight: '600', color: '#111', textShadow: '0 0 1px #ffffffff' }}>
         Unleash your bidding potential
         <br />
         <div style={{ marginTop: 10, fontSize: '16px', fontWeight: '400' }}></div>

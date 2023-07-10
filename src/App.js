@@ -10,23 +10,20 @@ import { LayerMaterial, Depth } from 'lamina'
 
 export default function App() {
   return (
-    <Canvas shadows camera={{ position: [-4, 0, -4], fov: 100 }}>
+    <Canvas shadows camera={{ position: [-4, 0, -4], fov: 95 }}>
       <group position={[0, -1.3, 0]}>
         <group rotation={[0, Math.PI / 3, 0]}>
           <AnswertreeLogo />
         </group>
 
-        <ambientLight intensity={0.7} />
-        <AccumulativeShadows temporal frames={200} color="purple" colorBlend={0.7} opacity={1} scale={20} alphaTest={0.85}>
-          <RandomizedLight amount={5} radius={5} ambient={0.5} position={[5, 4, 3]} bias={0.001} />
+        {/* <ambientLight intensity={0.7} /> */}
+        <AccumulativeShadows temporal frames={200} color="darkpurple" colorBlend={0.7} opacity={1} scale={20} alphaTest={0.85}>
+          <RandomizedLight amount={5} radius={5} ambient={0.5} position={[6, 4.5, 2]} bias={0.001} />
         </AccumulativeShadows>
       </group>
       <Env />
       <EffectComposer disableNormalPass>
-        <Vignette eskil={false} offset={0.2} darkness={0.75} />
-        <Bloom mipmapBlur luminanceThreshold={0.94} radius={0.01} />
-        <BrightnessContrast brightness={0} contrast={0.2} />
-        <HueSaturation hue={0} saturation={-0.15} />
+        <Vignette eskil={false} offset={0.15} darkness={0.7} />
       </EffectComposer>
 
       <OrbitControls autoRotate autoRotateSpeed={2} enablePan={true} enableZoom={true} minPolarAngle={Math.PI / 6.5} maxPolarAngle={Math.PI / 2.05} />
@@ -42,9 +39,9 @@ function AnswertreeLogo() {
     depth: { value: 100, min: 10, max: 300 }
   })
   return (
-    <mesh castShadow geometry={nodes.Curve.geometry} scale={[230, depth, 230]} rotation={[Math.PI / 2, 0, -Math.PI / 8]} position={[0, 1.7, 0]}>
+    <mesh castShadow geometry={nodes.Curve.geometry} scale={[230, depth, 230]} rotation={[Math.PI / 2, 0, -Math.PI / 8]} position={[0.2, 1.7, 0]}>
       <meshStandardMaterial metalness={1} roughness={roughness} color="rgb(32, 135, 88)" />
-      <Sparkles count={100} scale={0.1} size={1} speed={1.4} color={'white'} position={[0, 0, 0.02]} />
+      <Sparkles count={100} scale={0.09} size={1.5} speed={1.4} color={'white'} position={[0, 0, -0.03]} />
     </mesh>
   )
 }
