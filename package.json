@@ -6,6 +6,7 @@
     "environment",
     "blur"
   ],
+  "homepage": "./",
   "main": "src/index.js",
   "dependencies": {
     "@pmndrs/branding": "0.0.8",
