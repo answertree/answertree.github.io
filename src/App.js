@@ -1,50 +1,61 @@
 import { useState, useTransition } from 'react'
 import { useControls } from 'leva'
-import { Canvas } from '@react-three/fiber'
-import { AccumulativeShadows, RandomizedLight, Center, Environment, OrbitControls } from '@react-three/drei'
-
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { AccumulativeShadows, RandomizedLight, Center, Environment, OrbitControls, ContactShadows, CameraShake, Stars } from '@react-three/drei'
+import { EffectComposer, Vignette, Bloom, BrightnessContrast, HueSaturation } from '@react-three/postprocessing'
+import * as THREE from 'three'
 import { useGLTF } from '@react-three/drei'
+import { Sparkles, Shadow, Billboard } from '@react-three/drei'
+import { LayerMaterial, Depth } from 'lamina'
+
 export default function App() {
   return (
-    <Canvas shadows camera={{ position: [10, 10, 4], fov: 70, rotation: [1, 0.5, 1] }}>
+    <Canvas shadows camera={{ position: [-4, 0, -4], fov: 100 }}>
       <group position={[0, -1.3, 0]}>
-        <group rotation={[0, 0.5, 0]}>
+        <group rotation={[0, Math.PI / 3, 0]}>
           <AnswertreeLogo />
         </group>
-        <AccumulativeShadows temporal frames={200} color="purple" colorBlend={0.6} opacity={1} scale={20} alphaTest={0.85}>
-          <RandomizedLight amount={7} radius={3} ambient={0.6} position={[3, 4.5, 5]} bias={0.001} />
+
+        <ambientLight intensity={0.7} />
+        <AccumulativeShadows temporal frames={200} color="purple" colorBlend={0.7} opacity={1} scale={20} alphaTest={0.85}>
+          <RandomizedLight amount={5} radius={5} ambient={0.5} position={[5, 4, 3]} bias={0.001} />
         </AccumulativeShadows>
       </group>
       <Env />
-      <OrbitControls autoRotate autoRotateSpeed={2} zoom0={1} enablePan={true} enableZoom={true} minPolarAngle={Math.PI / 3.5} maxPolarAngle={Math.PI / 2.1} />
+      <EffectComposer disableNormalPass>
+        <Vignette eskil={false} offset={0.2} darkness={0.75} />
+        <Bloom mipmapBlur luminanceThreshold={0.94} radius={0.01} />
+        <BrightnessContrast brightness={0} contrast={0.2} />
+        <HueSaturation hue={0} saturation={-0.15} />
+      </EffectComposer>
+
+      <OrbitControls autoRotate autoRotateSpeed={2} enablePan={true} enableZoom={true} minPolarAngle={Math.PI / 6.5} maxPolarAngle={Math.PI / 2.05} />
     </Canvas>
   )
 }
 
 function AnswertreeLogo() {
-  const { nodes } = useGLTF('/answertree-logo.gltf')
+  const { nodes } = useGLTF('/answertree-logo-bevel.gltf')
 
   const { roughness, metalness, depth } = useControls({
-    roughness: { value: 0.7, min: 0, max: 1 },
-
+    roughness: { value: 0.5, min: 0, max: 1 },
     depth: { value: 100, min: 10, max: 300 }
   })
   return (
-    <Center top>
-      <mesh castShadow geometry={nodes.Curve.geometry} scale={[230, depth, 230]} rotation={[Math.PI / 2, 0, Math.PI / 6]} position={[0, 0.89, 0]}>
-        <meshStandardMaterial metalness={0.9} roughness={roughness} color="rgb(62, 165, 118)" />
-      </mesh>
-    </Center>
+    <mesh castShadow geometry={nodes.Curve.geometry} scale={[230, depth, 230]} rotation={[Math.PI / 2, 0, -Math.PI / 8]} position={[0, 1.7, 0]}>
+      <meshStandardMaterial metalness={1} roughness={roughness} color="rgb(32, 135, 88)" />
+      <Sparkles count={100} scale={0.1} size={1} speed={1.4} color={'white'} position={[0, 0, 0.02]} />
+    </mesh>
   )
 }
 
 function Env() {
-  const [preset, setPreset] = useState('sunset')
+  const [preset, setPreset] = useState('dawn')
   // You can use the "inTransition" boolean to react to the loading in-between state,
   // For instance by showing a message
   const [inTransition, startTransition] = useTransition()
   const { blur } = useControls({
-    blur: { value: 0.75, min: 0.4, max: 1 },
+    blur: { value: 0.65, min: 0, max: 1 },
 
     preset: {
       value: preset,
@@ -55,6 +66,6 @@ function Env() {
       onChange: (value) => startTransition(() => setPreset(value))
     }
   })
-  return <Environment preset={preset} background blur={blur} />
+  return <Environment preset={preset} background blur={blur} rotation={[10, 1.5, 2]} />
 }
-useGLTF.preload('/answertree-logo.gltf')
+useGLTF.preload('/answertree-logo-bevel.gltf')

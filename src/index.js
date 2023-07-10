@@ -3,15 +3,24 @@ import './styles.css'
 import App from './App'
 import { Leva } from 'leva'
 
-function Overlay() {
-  return <div style={{ position: 'absolute', top: 0, left: 0, pointerEvents: 'none', width: '100%', height: '100%' }}></div>
-}
-
 createRoot(document.getElementById('root')).render(
   <>
     <App />
-    <Overlay />
-    <div style={{ position: 'absolute', bottom: 40, left: 40, width: 220 }}>
+
+    <div
+      style={{
+        position: 'absolute',
+        pointerEvents: 'auto',
+        bottom: '10vh',
+        cursor: 'pointer',
+        left: '50%',
+        marginLeft: -140,
+        width: 280,
+        filter: 'drop-shadow(0 0 1px rgba(0,0,0,0.3)) drop-shadow(0 0 25px rgba(255,235,255,0.3))'
+      }}
+      onclick={() => {
+        window.open('https://answertree.ai', '_blank')
+      }}>
       <svg height="100%" viewBox="0 0 415 67" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M70.188 38.4027C68.86 35.132 65.6827 32.9933 62.1533 32.9933H40.964L54.408 1.2823e-05H30.904C28.3947 1.2823e-05 26.1373 1.52266 25.1973 3.84799L0 66.208H23.2787C25.7867 66.208 28.044 64.6853 28.984 62.36L40.7067 33.3507L51.856 60.8C53.184 64.0693 56.3613 66.208 59.8907 66.208H81.4813L70.188 38.4027Z"
@@ -47,6 +56,12 @@ createRoot(document.getElementById('root')).render(
           d="M414.72 37.2411C414.72 38.4417 414.64 39.5223 414.48 40.4829H390.166C390.366 42.8842 391.207 44.7652 392.688 46.126C394.168 47.4868 395.989 48.1671 398.151 48.1671C401.272 48.1671 403.494 46.8264 404.814 44.1449H413.879C412.919 47.3467 411.078 49.9881 408.356 52.0693C405.635 54.1104 402.293 55.131 398.331 55.131C395.129 55.131 392.247 54.4306 389.686 53.0298C387.165 51.589 385.183 49.5679 383.743 46.9665C382.342 44.365 381.641 41.3634 381.641 37.9615C381.641 34.5196 382.342 31.4979 383.743 28.8965C385.143 26.295 387.105 24.2939 389.626 22.8932C392.147 21.4924 395.049 20.792 398.331 20.792C401.492 20.792 404.314 21.4724 406.795 22.8331C409.317 24.1939 411.258 26.1349 412.619 28.6563C414.019 31.1377 414.72 33.9993 414.72 37.2411ZM406.015 34.8398C405.975 32.6786 405.195 30.9576 403.674 29.6769C402.153 28.3562 400.292 27.6958 398.091 27.6958C396.009 27.6958 394.248 28.3362 392.808 29.6169C391.407 30.8576 390.546 32.5985 390.226 34.8398H406.015Z"
           fill="#0F172A"></path>
       </svg>
+      <br />
+      <div style={{ marginTop: 12, textAlign: 'center', fontSize: '18px', fontWeight: '600', color: '#222', textShadow: '4px 5px 2px 12px #ffffff;' }}>
+        Unleash your bidding potential
+        <br />
+        <div style={{ marginTop: 10, fontSize: '16px', fontWeight: '400' }}></div>
+      </div>
     </div>
     <Leva collapsed hidden />
   </>
