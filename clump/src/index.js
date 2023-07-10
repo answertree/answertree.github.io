@@ -15,7 +15,7 @@ createRoot(document.getElementById("root")).render(
       style={{
         position: "absolute",
         pointerEvents: "auto",
-        bottom: "5vh",
+        bottom: "2vh",
         cursor: "pointer",
         left: "50%",
         marginLeft: -140,

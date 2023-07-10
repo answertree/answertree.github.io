@@ -62,7 +62,7 @@ function Clump({ mat = new THREE.Matrix4(), vec = new THREE.Vector3(), ...props 
 function Pointer() {
   const viewport = useThree((state) => state.viewport)
 
-  const [, api] = useSphere(() => ({ type: "Kinematic", args: [2.5], position: [1000, 10000, 10000] }))
+  const [, api] = useSphere(() => ({ type: "Kinematic", args: [3], position: [1000, 10000, 10000] }))
   return useFrame((state) => {
     // console.log(state.mouse)
     if (state.mouse.x === 0 && state.mouse.y === 0) return
