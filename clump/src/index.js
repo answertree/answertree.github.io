@@ -15,6 +15,7 @@ createRoot(document.getElementById("root")).render(
       style={{
         position: "absolute",
         pointerEvents: "auto",
+        userSelect: "none",
         bottom: "2vh",
         cursor: "pointer",
         left: "50%",
